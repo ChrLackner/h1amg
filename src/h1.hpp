@@ -23,8 +23,7 @@ public:
   //                  have the same dimensions.
   //                * height of a_prolongation is the same as width of a_system
   //                  and width of a_prolongation is smaller
-  H1AMG_Mat(
-            shared_ptr<ngla::BaseSparseMatrix> a_system, SPtrBJacobi a_bjacobi,
+  H1AMG_Mat(shared_ptr<ngla::BaseSparseMatrix> a_system, SPtrBJacobi a_bjacobi,
             SPtrSMdbl a_prolongation, const int a_smoother_its);
 
   virtual ~H1AMG_Mat() override

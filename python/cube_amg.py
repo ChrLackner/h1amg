@@ -1,15 +1,13 @@
 """Solve simple elliptic equation on a cube."""
 # pylint: disable=no-member
 
-from ctypes import CDLL
-
 import ngsolve as ngs
 from ngsolve import x, grad
 from netgen.libngpy._meshing import NgException
 
 from cube_geo import cube_geo
+import h1amg
 
-CDLL('libh1amg.so')
 # ngs.ngsglobals.pajetrace = 100000000
 
 with ngs.TaskManager():
@@ -38,7 +36,7 @@ with ngs.TaskManager():
     a = ngs.BilinearForm(fes, symmetric=False)
     a += ngs.SymbolicBFI(grad(u) * grad(v) + u * v)
 
-    c = ngs.Preconditioner(a, 'h1amg')
+    c = h1amg.H1AMG(a)
 
     gfu = ngs.GridFunction(fes)
     bvp = ngs.BVP(bf=a, lf=f, gf=gfu, pre=c)

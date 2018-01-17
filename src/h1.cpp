@@ -7,15 +7,13 @@ using namespace ngla;
 #include <ngstd.hpp>
 using namespace ngstd;
 
-#include "h1_helpers.hpp"
 #include "h1.hpp"
 
 
 namespace h1amg
 {
 
-H1AMG_Mat::H1AMG_Mat(
-                     shared_ptr<BaseSparseMatrix> a_system, SPtrBJacobi a_bjacobi,
+  H1AMG_Mat::H1AMG_Mat(shared_ptr<BaseSparseMatrix> a_system, SPtrBJacobi a_bjacobi,
                      SPtrSMdbl a_prolongation, const int a_smoother_its)
   : m_system(a_system), m_bjacobi(a_bjacobi),
     m_prolongation(a_prolongation),
